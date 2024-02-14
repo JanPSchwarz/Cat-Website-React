@@ -1,0 +1,36 @@
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  text-decoration: underline;
+  font-size: 2.5rem;
+  color: red;
+  margin: 30px;
+  text-shadow: 0 0 5px orange;
+  text-align: center;
+  background-color: ;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.button {
+  width: 30vw;
+  min-width: 130px;
+  max-width: 300px;
+  color: blue;
+  background-color: lightblue;
+  border: 3px black dashed;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 100px;
+}
+
+.button:active {
+  transform: scale(0.8);
+}

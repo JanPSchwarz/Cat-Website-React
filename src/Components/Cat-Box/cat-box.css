@@ -1,0 +1,70 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cat-description {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 40vw;
+  min-width: 300px;
+  padding: 10px;
+  background-color: lightskyblue;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 4px orange;
+  border: 2px solid black;
+  line-height: 1.5;
+  margin: 30px auto 50px;
+  cursor: pointer;
+}
+
+.cat-description > li {
+  background-color: blanchedalmond;
+  margin: 3px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0;
+  font-size: 1.2rem;
+}
+
+.cat-description > li > span {
+  display: block;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.card > div > img {
+  max-width: 30vw;
+  min-width: 250px;
+  object-fit: contain;
+  border: 2px solid black;
+  box-shadow: 0 0 10px 4px orange;
+  cursor: pointer;
+}
+
+.image-box {
+  position: relative;
+}
+
+.start-box > .card:first-child > .image-box > .fa-solid {
+  font-size: 2rem;
+  color: orange;
+  position: absolute;
+  bottom: -15px;
+  left: 5px;
+  display: block;
+}
+
+.fa-solid {
+  font-size: 0;
+}
+
+.divider {
+  height: 2px;
+  width: 80vw;
+  background-color: black;
+  margin: 35px 0 70px;
+}
