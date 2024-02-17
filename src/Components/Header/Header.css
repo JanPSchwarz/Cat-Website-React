@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .heading {
@@ -13,7 +14,6 @@
   margin: 10px 30px;
   text-shadow: 0 0 5px orange;
   text-align: center;
-  background-color: ;
   padding: 10px;
   border-radius: 5px;
 }

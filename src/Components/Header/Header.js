@@ -2,7 +2,7 @@ import "./Header.css";
 
 export default function Header({renderCats}) {
   return (
-    <header className="heading">
+    <header className="header">
       <h1 className="heading">Cute-Cat-Generator</h1>
       <button onClick={renderCats} className="button" type="button" data-js="button">
         😼
