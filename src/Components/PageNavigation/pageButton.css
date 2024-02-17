@@ -1,0 +1,19 @@
+.navButtonsBox {
+  display: flex;
+  padding-bottom: 80px;
+}
+
+.navButtonsBox_top {
+  display: flex;
+}
+
+.navButton {
+  margin: 10px;
+  background-color: orange;
+  color: cornsilk;
+  border: 3px solid orange;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px 2px orange;
+  font-size: 1rem;
+  cursor: pointer;
+}

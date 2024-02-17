@@ -1,5 +1,4 @@
 import "./cat-box.css";
-import { useState } from "react";
 
 export default function CatBox({
   catArray,
@@ -8,9 +7,8 @@ export default function CatBox({
 }) {
   console.log(catArray);
 
-  return catArray.map((cat) => {
+  return catArray.map((cat, index) => {
     const thisCat = cat.breeds[0];
-
     return (
       <>
         <div className="card" key={cat.id}>
@@ -19,17 +17,20 @@ export default function CatBox({
               src={cat.url}
               alt="cat"
               onClick={() => {
-                toggleDescription();
+                toggleDescription(index);
               }}
             />
             <i
               className={`fa-solid ${
-                showDescription ? "fa-arrow-up" : "fa-arrow-down"
+                showDescription[index] ? "fa-arrow-up" : "fa-arrow-down"
               }`}></i>
           </div>
           <ul
+            onClick={() => {
+              toggleDescription(index);
+            }}
             className="cat-description"
-            style={{ display: showDescription ? `block` : `none` }}>
+            style={{ display: showDescription[index] ? `block` : `none` }}>
             <li>
               Breed-Name:
               <span>{thisCat.name}</span>
