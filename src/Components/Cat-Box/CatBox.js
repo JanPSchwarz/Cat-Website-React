@@ -36,7 +36,7 @@ export default function CatBox({
               <span>{thisCat.name}</span>
             </li>
             <li>
-              Origin: <span>{thisCat.origin}ple</span>
+              Origin: <span>{thisCat.origin}</span>
             </li>
             <li>
               Temperament: <span>{thisCat.temperament}</span>

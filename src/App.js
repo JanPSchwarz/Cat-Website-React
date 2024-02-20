@@ -6,6 +6,8 @@ import CatBox from "./Components/Cat-Box/CatBox";
 import PageButtons from "./Components/PageNavigation/PageButtons";
 import ScrollToTop from "react-scroll-to-top";
 
+// OPEN new Branche: erase useEffect, put loadCats to props of Header, change useState of render to "showLoadingAnimation", give that as prop to Header, change loadCats with timeout Functions to se UseState of showLoadingAnimation to true and false similar to renderLoading function in Header, test if funct refreshCats functions well
+
 function App() {
   const [cats, setCats] = useState([]);
   const [render, setRender] = useState(false);
@@ -28,15 +30,19 @@ function App() {
     }
   }
 
-  const startIndex = (currentPage - 1) * 10;
-  const endIndex = startIndex + 10;
-  const currentItems = cats.slice(startIndex, endIndex);
-
   useEffect(() => {
     loadCats();
   }, []);
 
+  const startIndex = (currentPage - 1) * 10;
+  const endIndex = startIndex + 10;
+  const currentItems = cats.slice(startIndex, endIndex);
+
   function renderCats() {
+    // setTimeout(() => {
+    //   setRender(true);
+    // }, 4000);
+
     setRender(true);
   }
 
@@ -72,11 +78,11 @@ function App() {
     }, 300);
   }
 
-  console.log(show);
+  console.log(render);
 
   return (
     <>
-      <Header renderCats={renderCats} />
+      <Header renderCats={renderCats} render={render} />
 
       <div className="start-box" id="start-box">
         {currentPage > 1 ? (
