@@ -9,6 +9,7 @@
 
 .navButton {
   margin: 10px;
+  width: 150px;
   background-color: orange;
   color: cornsilk;
   border: 3px solid orange;

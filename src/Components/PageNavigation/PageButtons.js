@@ -19,7 +19,7 @@ export default function PageButtons({
           Previous Page
         </button>
       ) : null}
-      {currentPage < 10 ? (
+      {currentPage < 11 ? (
         <button
           className="navButton"
           onClick={() => {
@@ -28,7 +28,7 @@ export default function PageButtons({
           Next Page
         </button>
       ) : null}
-      {currentPage === 10 ? (
+      {currentPage === 11 ? (
         <button
           className="navButton"
           onClick={() => {

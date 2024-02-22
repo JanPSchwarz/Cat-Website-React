@@ -5,12 +5,12 @@ import Header from "./Components/Header/Header";
 import CatBox from "./Components/Cat-Box/CatBox";
 import PageButtons from "./Components/PageNavigation/PageButtons";
 import ScrollToTop from "react-scroll-to-top";
-
-// OPEN new Branche: erase useEffect, put loadCats to props of Header, change useState of render to "showLoadingAnimation", give that as prop to Header, change loadCats with timeout Functions to se UseState of showLoadingAnimation to true and false similar to renderLoading function in Header, test if funct refreshCats functions well
+import catLogo from "./Images/AdobeStock_548802868.svg";
 
 function App() {
   const [cats, setCats] = useState([]);
   const [render, setRender] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
 
   // const initialShow = Array(10).fill(false);
   const [show, setShow] = useState([]);
@@ -39,11 +39,9 @@ function App() {
   const currentItems = cats.slice(startIndex, endIndex);
 
   function renderCats() {
-    // setTimeout(() => {
-    //   setRender(true);
-    // }, 4000);
-
-    setRender(true);
+    setTimeout(() => {
+      setRender(true);
+    }, 5000);
   }
 
   function toggleDescription(index) {
@@ -53,7 +51,7 @@ function App() {
   }
 
   function pageUp() {
-    if (currentPage < 10) {
+    if (currentPage < 11) {
       setCurrentPage(currentPage + 1);
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: `smooth` });
@@ -70,9 +68,26 @@ function App() {
     }
   }
 
+  function renderLoading() {
+    if (render === false) {
+      setShowLoading(true);
+    }
+    setTimeout(() => {
+      setShowLoading(false);
+    }, 5000);
+  }
+
   function refreshCats() {
-    setCurrentPage(1);
     loadCats();
+    setRender(false);
+    renderLoading();
+
+    setTimeout(() => {
+      setRender(true);
+    }, 5000);
+    setTimeout(() => {
+      setCurrentPage(1);
+    }, 5000);
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: `smooth` });
     }, 300);
@@ -82,9 +97,27 @@ function App() {
 
   return (
     <>
-      <Header renderCats={renderCats} render={render} />
+      <Header
+        renderCats={renderCats}
+        renderLoading={renderLoading}
+        showLoading={showLoading}
+      />
 
       <div className="start-box" id="start-box">
+        {currentPage === 11 ? (
+          <div className="endScreen__box">
+            {/* <img className="cat__image" src={catLogo} alt="cat"></img> */}
+            <iframe
+              src="https://giphy.com/embed/bj09BK2BzLLQk"
+              width="280"
+              height="280"
+              frameBorder="0"
+              class="giphy-embed"
+              allowFullScreen
+              title="cat-gif"></iframe>
+            <p>Weowww, you made it to the end!</p>
+          </div>
+        ) : null}
         {currentPage > 1 ? (
           <>
             <PageButtons
@@ -94,7 +127,9 @@ function App() {
               refreshCats={refreshCats}
               top="top"
             />
-            <p className="counterTop">{currentPage} / 10</p>
+            {currentPage < 11 ? (
+              <p className="counterTop">{currentPage} / 10</p>
+            ) : null}
           </>
         ) : null}
         {render ? (
@@ -104,18 +139,24 @@ function App() {
             showDescription={show}
           />
         ) : null}
-        {render ? <p className="counterBottom">{currentPage} / 10</p> : null}
         {render ? (
-          <PageButtons
-            pageUp={pageUp}
-            pageDown={pageDown}
-            currentPage={currentPage}
-            refreshCats={refreshCats}
-          />
+          currentPage < 11 ? (
+            <p className="counterBottom">{currentPage} / 10</p>
+          ) : null
+        ) : null}
+        {render ? (
+          currentPage < 11 ? (
+            <PageButtons
+              pageUp={pageUp}
+              pageDown={pageDown}
+              currentPage={currentPage}
+              refreshCats={refreshCats}
+            />
+          ) : null
         ) : null}
       </div>
 
-      {render ? <p class="note">Made with ❤️</p> : null}
+      {render ? <p className="note">Made with ❤️</p> : null}
 
       <ScrollToTop smooth color="orange" />
     </>
