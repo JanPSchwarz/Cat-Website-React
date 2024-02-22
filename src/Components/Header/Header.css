@@ -34,3 +34,25 @@
 .button:active {
   transform: scale(0.8);
 }
+
+.loading__animation {
+  display: inline-block;
+  animation-name: rotateCatHead;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes rotateCatHead {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading__text {
+  position: absolute;
+  bottom: 0;
+}
+
+/* className={showLoading ? `loading__animation` : null} */
