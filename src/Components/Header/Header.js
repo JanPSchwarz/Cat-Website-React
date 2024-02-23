@@ -1,11 +1,21 @@
 import "./Header.css";
 import { useEffect } from "react";
 
-export default function Header({ renderCats, renderLoading, showLoading }) {
-  console.log(showLoading);
+export default function Header({
+  renderCats,
+  renderLoading,
+  showLoading,
+  reload,
+}) {
   return (
     <header className="header">
-      <h1 className="heading">Cute-Cat-Generator</h1>
+      <h1
+        className="heading"
+        onClick={() => {
+          reload();
+        }}>
+        Cute-Cat-Generator
+      </h1>
       <button
         onClick={() => {
           renderCats();

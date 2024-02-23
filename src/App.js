@@ -102,6 +102,10 @@ function App() {
     }, 5000);
   }
 
+  function reloadPage() {
+    document.location.reload();
+  }
+
   // console.log(render);
 
   return (
@@ -110,6 +114,7 @@ function App() {
         renderCats={renderCats}
         renderLoading={renderLoading}
         showLoading={showLoading}
+        reload={reloadPage}
       />
 
       <div className="start-box" id="start-box">
