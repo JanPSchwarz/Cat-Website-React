@@ -1,7 +1,8 @@
 import "./Header.css";
-import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Header({ renderCats, renderLoading, showLoading }) {
+  console.log(showLoading);
   return (
     <header className="header">
       <h1 className="heading">Cute-Cat-Generator</h1>

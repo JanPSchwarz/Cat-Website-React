@@ -5,16 +5,21 @@ import Header from "./Components/Header/Header";
 import CatBox from "./Components/Cat-Box/CatBox";
 import PageButtons from "./Components/PageNavigation/PageButtons";
 import ScrollToTop from "react-scroll-to-top";
-import catLogo from "./Images/AdobeStock_548802868.svg";
 
 function App() {
+  // stores fetched Data
   const [cats, setCats] = useState([]);
+
+  // stores boolean for conditional render on cat button click
   const [render, setRender] = useState(false);
+
+  // stores boolean for Loading Animation on Cat Button
   const [showLoading, setShowLoading] = useState(false);
 
-  // const initialShow = Array(10).fill(false);
+  // stores boolean for description toggle
   const [show, setShow] = useState([]);
 
+  // stores current Page
   const [currentPage, setCurrentPage] = useState(1);
 
   async function loadCats() {
@@ -30,26 +35,31 @@ function App() {
     }
   }
 
+  // fetching 100 cats on first load
   useEffect(() => {
     loadCats();
   }, []);
 
+  // defines page-number and get 10 cats per page
   const startIndex = (currentPage - 1) * 10;
   const endIndex = startIndex + 10;
   const currentItems = cats.slice(startIndex, endIndex);
 
+  // update render on cat button click, timeout matching the loading animation in Header-Component
   function renderCats() {
     setTimeout(() => {
       setRender(true);
     }, 5000);
   }
 
+  // description toggle for every mapped cat
   function toggleDescription(index) {
     const updateShow = [...show];
     updateShow[index] = !updateShow[index];
     setShow(updateShow);
   }
 
+  // page-navigation
   function pageUp() {
     if (currentPage < 11) {
       setCurrentPage(currentPage + 1);
@@ -68,6 +78,7 @@ function App() {
     }
   }
 
+  // updates boolean for loading animation for Header-Component, timeout matches render-timeout
   function renderLoading() {
     if (render === false) {
       setShowLoading(true);
@@ -77,23 +88,21 @@ function App() {
     }, 5000);
   }
 
+  // function for refresh-button from PageButtons-Component
   function refreshCats() {
     loadCats();
-    setRender(false);
-    renderLoading();
 
+    setShowLoading(true);
     setTimeout(() => {
-      setRender(true);
+      setShowLoading(false);
     }, 5000);
+
     setTimeout(() => {
       setCurrentPage(1);
     }, 5000);
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: `smooth` });
-    }, 300);
   }
 
-  console.log(render);
+  // console.log(render);
 
   return (
     <>
@@ -104,20 +113,6 @@ function App() {
       />
 
       <div className="start-box" id="start-box">
-        {currentPage === 11 ? (
-          <div className="endScreen__box">
-            {/* <img className="cat__image" src={catLogo} alt="cat"></img> */}
-            <iframe
-              src="https://giphy.com/embed/bj09BK2BzLLQk"
-              width="280"
-              height="280"
-              frameBorder="0"
-              class="giphy-embed"
-              allowFullScreen
-              title="cat-gif"></iframe>
-            <p>Weowww, you made it to the end!</p>
-          </div>
-        ) : null}
         {currentPage > 1 ? (
           <>
             <PageButtons
@@ -132,6 +127,7 @@ function App() {
             ) : null}
           </>
         ) : null}
+
         {render ? (
           <CatBox
             catArray={currentItems}
@@ -139,11 +135,27 @@ function App() {
             showDescription={show}
           />
         ) : null}
+
         {render ? (
           currentPage < 11 ? (
             <p className="counterBottom">{currentPage} / 10</p>
           ) : null
         ) : null}
+
+        {currentPage === 11 ? (
+          <div className="endScreen__box">
+            <iframe
+              src="https://giphy.com/embed/bj09BK2BzLLQk"
+              width="280"
+              height="280"
+              frameBorder="0"
+              class="giphy-embed"
+              allowFullScreen
+              title="cat-gif"></iframe>
+            <p>Weowww, you made it to the end!</p>
+          </div>
+        ) : null}
+
         {render ? (
           currentPage < 11 ? (
             <PageButtons
@@ -158,6 +170,7 @@ function App() {
 
       {render ? <p className="note">Made with ❤️</p> : null}
 
+      {/* shows only on scrollable page */}
       <ScrollToTop smooth color="orange" />
     </>
   );

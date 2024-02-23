@@ -5,7 +5,7 @@ export default function PageButtons({
   pageDown,
   currentPage,
   refreshCats,
-  top
+  top,
 }) {
   //   console.log(currentPage);
   return (
@@ -19,6 +19,7 @@ export default function PageButtons({
           Previous Page
         </button>
       ) : null}
+
       {currentPage < 11 ? (
         <button
           className="navButton"
@@ -28,6 +29,7 @@ export default function PageButtons({
           Next Page
         </button>
       ) : null}
+
       {currentPage === 11 ? (
         <button
           className="navButton"
