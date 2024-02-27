@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "./Components/Header/Header";
 import CatBox from "./Components/Cat-Box/CatBox";
 import PageButtons from "./Components/PageNavigation/PageButtons";
+import EndScreen from "./Components/EndScreen-Box/EndScreen";
 import ScrollToTop from "react-scroll-to-top";
 
 function App() {
@@ -25,17 +26,17 @@ function App() {
   async function loadCats() {
     try {
       const response = await fetch(
-        `https://api.thecatapi.com/v1/images/search?limit=100&page=${currentPage}&has_breeds=1&api_key=live_80QHtDPhcDJgMWfVMivtOm4RkbsEB7Op11NNA8NkImpLpcuUvYoyb12eDy5cLmnb`
+        `https://api.thecatapi.com/v1/images/search?limit=50&page=${currentPage}&has_breeds=1&api_key=live_80QHtDPhcDJgMWfVMivtOm4RkbsEB7Op11NNA8NkImpLpcuUvYoyb12eDy5cLmnb`
       );
       const cats = await response.json();
-      console.log(cats);
+      // console.log(cats);
       setCats(cats);
     } catch (error) {
       console.log(error);
     }
   }
 
-  // fetching 100 cats on first load
+  // fetching 50 cats on first load
   useEffect(() => {
     loadCats();
   }, []);
@@ -63,18 +64,14 @@ function App() {
   function pageUp() {
     if (currentPage < 11) {
       setCurrentPage(currentPage + 1);
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: `smooth` });
-      }, 300);
+      window.scrollTo({ top: 0 });
     }
   }
 
   function pageDown() {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: `smooth` });
-      }, 300);
+      window.scrollTo({ top: 0, behavior: `smooth` });
     }
   }
 
@@ -127,42 +124,28 @@ function App() {
               refreshCats={refreshCats}
               top="top"
             />
-            {currentPage < 11 ? (
-              <p className="counterTop">{currentPage} / 10</p>
+            {currentPage < 6 ? (
+              <p className="counterTop">{currentPage} / 5</p>
             ) : null}
           </>
         ) : null}
-
         {render ? (
           <CatBox
             catArray={currentItems}
             toggleDescription={toggleDescription}
             showDescription={show}
+            currentPage={currentPage}
           />
         ) : null}
-
         {render ? (
-          currentPage < 11 ? (
-            <p className="counterBottom">{currentPage} / 10</p>
+          currentPage < 6 ? (
+            <p className="counterBottom">{currentPage} / 5</p>
           ) : null
         ) : null}
-
-        {currentPage === 11 ? (
-          <div className="endScreen__box">
-            <iframe
-              src="https://giphy.com/embed/bj09BK2BzLLQk"
-              width="280"
-              height="280"
-              frameBorder="0"
-              class="giphy-embed"
-              allowFullScreen
-              title="cat-gif"></iframe>
-            <p>Weowww, you made it to the end!</p>
-          </div>
-        ) : null}
+        {currentPage === 6 ? <EndScreen currentPage={currentPage} /> : null}
 
         {render ? (
-          currentPage < 11 ? (
+          currentPage < 6 ? (
             <PageButtons
               pageUp={pageUp}
               pageDown={pageDown}

@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   list-style: none;
-  width: 40vw;
+  width: 60vw;
   min-width: 300px;
   padding: 10px;
   background-color: lightskyblue;
@@ -36,13 +36,30 @@
   margin-top: 5px;
 }
 
-.card > div > img {
-  max-width: 30vw;
-  min-width: 250px;
+.catImage {
+  width: 60vw;
+  height: auto;
   object-fit: contain;
   border: 2px solid black;
   box-shadow: 0 0 10px 4px orange;
   cursor: pointer;
+}
+
+@media screen and (min-width: 700px) {
+  .catImage {
+    width: 50vw;
+  }
+  .cat-description {
+    width: 50vw;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .catImage {
+    width: 35vw;
+  }
+  .cat-description {
+    width: 35vw;
+  }
 }
 
 .image-box {

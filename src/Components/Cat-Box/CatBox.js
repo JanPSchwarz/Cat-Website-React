@@ -1,4 +1,6 @@
 import "./cat-box.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function CatBox({
   catArray,
@@ -13,7 +15,13 @@ export default function CatBox({
       <>
         <div className="card" key={cat.id}>
           <div className="image-box">
-            <img
+            <LazyLoadImage
+              className="catImage"
+              placeholderSrc={cat.url}
+              loading="lazy"
+              effect="blur"
+              height="auto"
+              width="auto"
               src={cat.url}
               alt="cat"
               onClick={() => {

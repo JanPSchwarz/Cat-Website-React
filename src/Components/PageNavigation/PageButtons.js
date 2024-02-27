@@ -20,7 +20,7 @@ export default function PageButtons({
         </button>
       ) : null}
 
-      {currentPage < 11 ? (
+      {currentPage < 6 ? (
         <button
           className="navButton"
           onClick={() => {
@@ -30,13 +30,13 @@ export default function PageButtons({
         </button>
       ) : null}
 
-      {currentPage === 11 ? (
+      {currentPage === 6 ? (
         <button
           className="navButton"
           onClick={() => {
             refreshCats();
           }}>
-          Get me 100 new Cats!
+          Get me 50 new Cats!
         </button>
       ) : null}
     </div>

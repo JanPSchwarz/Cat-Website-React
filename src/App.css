@@ -15,14 +15,6 @@
   margin: 40px;
 }
 
-.endScreen__box {
-  margin: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .cat__image {
   max-width: 10vw;
   min-width: 200px;
